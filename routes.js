@@ -11,7 +11,7 @@ const routes = [
     },
     {
         method : 'POST',
-        path : '/',
+        path : '/upload',
         options : {
             handler : async (req,h)=>{
                 console.log("---------------------------")
@@ -27,6 +27,14 @@ const routes = [
                 maxBytes : 1048576 * 3,
                 multipart : true
             }
+        }
+    },
+    {
+        method : 'GET',
+        path : '/upload/{param}',
+        handler : (req,h) =>{
+            const { param } = req.params;
+            return h.file(`${param}`)
         }
     },
     {
