@@ -17,6 +17,7 @@
     "@hapi/hapi": "^20.2.2",
     "@hapi/inert": "^6.0.5",
     "dotenv": "^16.0.0",
+    "moment": "^2.29.3",
     "twitter-api-v2": "^1.12.0"
   }
 }

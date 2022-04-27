@@ -1,5 +1,6 @@
 const { postTweet } = require('./handler/handler')
 const handleFileUpload = require('./handler/handleUpload')
+const tweet = require('./tweet')
 
 const routes = [
     {
@@ -14,12 +15,10 @@ const routes = [
         path : '/upload',
         options : {
             handler : async (req,h)=>{
-                console.log("---------------------------")
                 const { payload } = req
-                //console.log(payload.file)
                 const response = handleFileUpload(payload.file)
-
-                return payload
+                tweet(payload,h)
+                return "Success Pushing the image and tweet"
             },
             payload : {
                 parse : true,
