@@ -8,9 +8,11 @@ const handleFileUpload = file => {
       const data = file._data
       //console.log({data}.data)
       console.log("Het Handled")
-      console.log(__filename+ "\\" +filename)
+      console.log(__dirname)
+      const dirname = path.join(__dirname,"..","upload")
+      console.log(dirname)
       
-      fs.writeFile( __dirname+ "\\" +filename, data, err => {
+      fs.writeFile(dirname +"\\" +filename, data, err => {
         if (err) {
           reject(err)
         }
