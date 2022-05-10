@@ -5,7 +5,6 @@ const handleFileUpload = file => {
     return new Promise((resolve, reject) => {
       const filename = file.hapi.filename
       const data = file._data
-      console.log("Het Handled")
       const dirname = path.join(__dirname,"..","upload")
       fs.writeFile(dirname +"\\" +filename, data, err => {
         if (err) {

@@ -19,7 +19,7 @@ const init = async () =>{
     await server.register(Inert);
     server.route(routes)
     await server.start()
-    console.log(`Server berjalan pada ${server.info.uri}`)
+    console.log(`Server running at ${server.info.uri}`)
 }
 
 init()

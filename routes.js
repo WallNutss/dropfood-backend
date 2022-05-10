@@ -1,4 +1,3 @@
-const { postTweet } = require('./handler/handler')
 const handleFileUpload = require('./handler/handleUpload')
 const tweet = require('./tweet')
 
@@ -17,14 +16,18 @@ const routes = [
             payload : {
                 parse : true,
                 output : 'stream',
-                maxBytes : 1048576 * 3,
+                maxBytes : 1048576 * 10,
                 multipart : true
             },
             handler : async (req,h)=>{
                 const { payload } = req
-                const response = handleFileUpload(payload.file)
-                tweet(payload,h)
-                return "Success Pushing the image and tweet"
+                if(payload.file){
+                    const response = handleFileUpload(payload.file)
+                }else{
+                    console.log("No file has been transfered")
+                }
+                const res = await tweet(payload,h)
+                return res
             },
         }
     },

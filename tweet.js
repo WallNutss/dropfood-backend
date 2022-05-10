@@ -1,9 +1,9 @@
-const {TwitterApi} = require('twitter-api-v2')
+const { TwitterApi } = require('twitter-api-v2')
 const dotenv = require('dotenv')
 const moment = require('moment')
 const path = require('path')
 
-dotenv.config({path:'./config.env'})
+dotenv.config({path:'./.env'})
 
 // OAuth 1.0a (User context)
 const client = new TwitterApi({
@@ -30,25 +30,42 @@ const tweet = async (req,h) => {
             let dateBefore = Date.now();
             let date = moment().format('MMMM Do YYYY, h:mm:ss a')
             await rwClient.v1.tweet(`Now, from Node.js at ${date}, ${status}`,{
-                media_ids:mediaId,
+                media_ids : mediaId,
             })
-            console.log("Success pushing the tweet!")
             latency(Date.now(),dateBefore)
+            const response = h.response({
+                stasus : "Success",
+                message : "Success pushing the tweet to twitter"
+            })
+            return response
         } catch (error) {
             console.log("Error handling the tweet")
-            console.log(error)
+            const response = h.response({
+                stasus : "Fail",
+                message : error
+            })
+            return response
         }
     }else{
         const status = req.status
         try {
             let dateBefore = Date.now();
             let date = moment().format('MMMM Do YYYY, h:mm:ss a')
-            await rwClient.v1.tweet(`at ${date}, ${status}`)
+            await rwClient.v1.tweet(`At ${date}, ${status}`)
             console.log("Successs")
             latency(Date.now(),dateBefore)
+            const response = h.response({
+                stasus : "Success",
+                message : "Success pushing the tweet to twitter"
+            })
+            return response
         } catch (error) {
             console.log("Error handling the tweet")
-            console.log(error)
+            const response = h.response({
+                stasus : "Fail",
+                message : error
+            })
+            return response
         }
     }
 }
