@@ -13,8 +13,7 @@ const init = async () =>{
             files : {
                 relativeTo: path.join(__dirname, 'upload')
             }
-        },
-        host : 'localhost'
+        }
     })
     await server.register(Inert);
     server.route(routes)
