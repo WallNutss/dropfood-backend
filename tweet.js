@@ -21,12 +21,14 @@ const latency = (dateNow,dateBefore) =>{
 
 //Tweet a tweet status with an image
 const tweet = async (req,h) => {
+    const file = req.file
+    const data = file._data
     if (req.file){
         const status = req.status
-        const filename = req.file.hapi.filename
-        const filePath = path.join(__dirname,"upload",filename)
-        try {
-            const mediaId = await rwClient.v1.uploadMedia(filePath);
+        //const filename = req.file.hapi.filename
+        //const filePath = path.join(__dirname,"upload",filename)
+        try { //Buffer
+            const mediaId = await rwClient.v1.uploadMedia(Buffer.from([data]));
             let dateBefore = Date.now();
             let date = moment().format('MMMM Do YYYY, h:mm:ss a')
             await rwClient.v1.tweet(`Now, from Node.js at ${date}, ${status}`,{

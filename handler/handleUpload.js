@@ -3,6 +3,7 @@ const path = require('path')
 
 const handleFileUpload = file => {
     return new Promise((resolve, reject) => {
+      console.log(file)
       const filename = file.hapi.filename
       const data = file._data
       const dirname = path.join(__dirname,"..","upload")
