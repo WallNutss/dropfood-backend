@@ -28,8 +28,6 @@ const routes = [
                     console.log("No file has been transfered")
                 }
                 const res = await tweet(payload,h)
-                const file = payload.file
-                const data = file._data
                 //console.log(data)
                 //console.log(Buffer.isBuffer(data))
                 return res
