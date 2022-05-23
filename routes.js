@@ -21,16 +21,18 @@ const routes = [
             },
             handler : async (req,h)=>{
                 const { payload } = req
-                // if(payload.file){
-                //     console.log("There is a file there!")
-                //     console.log(payload.file)
-                //     const response = handleFileUpload(payload.file)
-                // }else{
-                //     console.log("No file has been transfered")
-                // }
+                if(payload.file){
+                    console.log("There is a file there!")
+                    //const response = handleFileUpload(payload.file)
+                }else{
+                    console.log("No file has been transfered")
+                }
                 const res = await tweet(payload,h)
-            
-                return payload
+                const file = payload.file
+                const data = file._data
+                //console.log(data)
+                //console.log(Buffer.isBuffer(data))
+                return res
             },
         }
     },
