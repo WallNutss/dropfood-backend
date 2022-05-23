@@ -21,12 +21,9 @@ const latency = (dateNow,dateBefore) =>{
 
 //Tweet a tweet status with an image
 const tweet = async (req,h) => {
-    const file = req.file
-    console.log("Tweets!")
-    const data = file._data
-    console.log(data)
-    console.log(Buffer.isBuffer(data))
     if (req.file){
+        const file = req.file
+        const data = file._data
         const status = req.status
         //const filename = req.file.hapi.filename
         //const filePath = path.join(__dirname,"upload",filename)
