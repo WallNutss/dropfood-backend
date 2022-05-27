@@ -26,19 +26,19 @@ const routes = [
                 const { payload } = req
                 const data = JSON.stringify(payload)
                 const actdata = JSON.parse(data)
-
+                console.log(actdata)
                 if(payload.file){
                     console.log("There is a file there!")
                     //const response = handleFileUpload(payload.file)
                 }else{
                     console.log("No file has been transfered")
                 }
-                const {status} = actdata
-                const {file} = actdata
-                const str = Buffer.from(status._data)
-                const location = Buffer.from(file._data)
-                console.log(str.toString())
-                console.log(location.toString())
+                // //const {status} = actdata
+                // const {file} = actdata
+                // const str = Buffer.from(status._data)
+                // const location = Buffer.from(file._data)
+                // console.log(str.toString())
+                // console.log(location.toString())
                 //const res = await tweet(payload,h)
                 //console.log(data)
                 //console.log(Buffer.isBuffer(data))
