@@ -1,5 +1,6 @@
 const handleFileUpload = require('./handler/handleUpload')
 const tweet = require('./tweet')
+const fs = require('fs')
 
 const routes = [
     {
@@ -17,20 +18,31 @@ const routes = [
                 parse : true,
                 output : 'stream',
                 maxBytes : 1048576 * 10,
-                multipart : true
+                multipart : true,
+                allow : 'multipart/form-data'
             },
             handler : async (req,h)=>{
+                //console.log(req)
                 const { payload } = req
+                const data = JSON.stringify(payload)
+                const actdata = JSON.parse(data)
+
                 if(payload.file){
                     console.log("There is a file there!")
                     //const response = handleFileUpload(payload.file)
                 }else{
                     console.log("No file has been transfered")
                 }
-                const res = await tweet(payload,h)
+                const {status} = actdata
+                const {file} = actdata
+                const str = Buffer.from(status._data)
+                const location = Buffer.from(file._data)
+                console.log(str.toString())
+                console.log(location.toString())
+                //const res = await tweet(payload,h)
                 //console.log(data)
                 //console.log(Buffer.isBuffer(data))
-                return res
+                return payload
             },
         }
     },
